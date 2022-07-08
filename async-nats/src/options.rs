@@ -562,6 +562,24 @@ impl ConnectOptions {
         self.sender_capacity = capacity;
         self
     }
+
+    /// Disables or enables echoing of messages back to the client
+    /// https://docs.nats.io/using-nats/developer/connecting/noecho
+    ///
+    /// # Example
+    /// ```
+    /// # #[tokio::main]
+    /// # async fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// async_nats::ConnectOptions::new().no_echo(true).connect("demo.nats.io").await?;
+    /// # Ok(())
+    /// # }
+
+    /// ```
+    ///
+    pub fn no_echo(mut self, no_echo: bool) -> ConnectOptions {
+        self.no_echo = no_echo;
+        self
+    }
 }
 
 type AsyncCallbackArg0<T> =
